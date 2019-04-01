@@ -5,6 +5,7 @@ from settings import app
 
 db = SQLAlchemy(app)
 
+
 class Account(db.Model):
     __tablename__ = 'accounts'
     customerid = db.Column(db.Integer, primary_key=True)
@@ -30,8 +31,6 @@ class Account(db.Model):
         is_successful = Account.query.filter_by(accountid=_accountid).delete()
         db.session.commit()
         return bool(is_successful)
-
-
 
     def update_account_balance(_accountid, _balance):
         account_to_replace = Account.query.filter_by(accountid=_accountid).first()
